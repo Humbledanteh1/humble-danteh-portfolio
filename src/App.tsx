@@ -96,7 +96,7 @@ export default function App() {
       </section>
 
       <section className="about-section" id="about" aria-labelledby="about-heading">
-        <div className="about-stamp" aria-hidden="true"><span className="monogram"><span>S</span><span>M</span></span><i>⋆</i><small>Vertigo AI<br />Owner</small></div>
+        <div className="about-stamp" aria-hidden="true"><span className="monogram">SM</span><i>⋆</i><small>Vertigo AI<br />Owner</small></div>
         <div className="about-copy"><span className="eyebrow">02 / About</span><h2 id="about-heading">Designing the bridge between an <em>idea</em> and a useful digital tool.</h2><p>Sharif Mahmood builds websites and AI agents through Vertigo AI. His work is centered on turning an idea into something people can visit, use, and understand. He is interested in the practical details: a clear interface, a helpful workflow, and technology that earns its place.</p><p>Outside of individual projects, he keeps making room for interesting experiments and new ways to apply AI thoughtfully.</p><a className="inline-contact" href="mailto:Vertigogrowth1@gmail.com">Vertigogrowth1@gmail.com <span aria-hidden="true">↗</span></a></div>
       </section>
 

@@ -213,15 +213,23 @@ body { overflow-x: hidden; }
   }
 }
 
-/* Interlocking initials for the Vertigo AI owner stamp. */
-.about-stamp .monogram {
+/* A clear, stacked SM / Vertigo AI Owner lockup. */
+.about-stamp {
   display: flex;
-  align-items: baseline;
-  font: 400 4rem/.9 'DM Serif Display';
-  letter-spacing: -.1em;
-  transform: translateX(-.08em);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.about-stamp .monogram span + span {
-  margin-left: -.1em;
-  transform: translateY(.08em);
+.about-stamp .monogram {
+  display: block;
+  font: 400 4rem/1 'DM Serif Display';
+  letter-spacing: 0;
+}
+.about-stamp small {
+  position: static;
+  margin: 0;
+  text-align: center;
+  font: 700 .56rem/1.45 Space Mono;
+  letter-spacing: .08em;
 }
