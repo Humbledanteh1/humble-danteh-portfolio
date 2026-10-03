@@ -212,3 +212,16 @@ body { overflow-x: hidden; }
     scroll-behavior: auto;
   }
 }
+
+/* Interlocking initials for the Vertigo AI owner stamp. */
+.about-stamp .monogram {
+  display: flex;
+  align-items: baseline;
+  font: 400 4rem/.9 'DM Serif Display';
+  letter-spacing: -.1em;
+  transform: translateX(-.08em);
+}
+.about-stamp .monogram span + span {
+  margin-left: -.1em;
+  transform: translateY(.08em);
+}

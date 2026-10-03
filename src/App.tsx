@@ -5,9 +5,9 @@ import './App.css'
 const projectTabs = ['All work', 'Websites', 'AI agents'] as const
 const socialLinks = [
   { label: 'X / Twitter', handle: '@Humbledanteh1', icon: FaXTwitter, href: 'https://x.com/Humbledanteh1' },
-  { label: 'Telegram', handle: 'Add profile', icon: FaTelegram, href: '#contact' },
+  { label: 'Telegram', handle: '@Humbledanteh1', icon: FaTelegram, href: 'https://t.me/Humbledanteh1' },
   { label: 'Facebook', handle: 'Add profile', icon: FaFacebookF, href: '#contact' },
-  { label: 'LinkedIn', handle: 'Add profile', icon: FaLinkedinIn, href: '#contact' },
+  { label: 'LinkedIn', handle: 'sharif-mahmood-0792a842b', icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/sharif-mahmood-0792a842b' },
   { label: 'GitHub', handle: 'humbledanteh1', icon: FaGithub, href: 'https://github.com/Humbledanteh1' },
 ]
 
@@ -96,12 +96,12 @@ export default function App() {
       </section>
 
       <section className="about-section" id="about" aria-labelledby="about-heading">
-        <div className="about-stamp" aria-hidden="true"><span>SM</span><i>⋆</i><small>Vertigo AI<br />Owner</small></div>
+        <div className="about-stamp" aria-hidden="true"><span className="monogram"><span>S</span><span>M</span></span><i>⋆</i><small>Vertigo AI<br />Owner</small></div>
         <div className="about-copy"><span className="eyebrow">02 / About</span><h2 id="about-heading">Designing the bridge between an <em>idea</em> and a useful digital tool.</h2><p>Sharif Mahmood builds websites and AI agents through Vertigo AI. His work is centered on turning an idea into something people can visit, use, and understand. He is interested in the practical details: a clear interface, a helpful workflow, and technology that earns its place.</p><p>Outside of individual projects, he keeps making room for interesting experiments and new ways to apply AI thoughtfully.</p><a className="inline-contact" href="mailto:Vertigogrowth1@gmail.com">Vertigogrowth1@gmail.com <span aria-hidden="true">↗</span></a></div>
       </section>
 
       <section className="social-section" aria-labelledby="social-heading">
-        <div className="social-intro"><span className="eyebrow">03 / Elsewhere</span><h2 id="social-heading">Find the work<br />in <em>motion.</em></h2><p>Social profiles and public workspaces are gathered here. The X and GitHub links use the provided <strong>Humbledanteh1</strong> username; the other profile links can be added when you are ready.</p></div>
+        <div className="social-intro"><span className="eyebrow">03 / Elsewhere</span><h2 id="social-heading">Find the work<br />in <em>motion.</em></h2><p>Find me on LinkedIn, Telegram, X, and GitHub. The Telegram, X, and GitHub profiles use <strong>Humbledanteh1</strong>; Facebook can be added when ready.</p></div>
         <div className="social-list">{socialLinks.map(({ label, handle, icon: Icon, href }) => <a className="social-card" href={href} aria-label={`${label}: ${handle}`} key={label} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span className="social-icon" aria-hidden="true"><Icon /></span><span className="social-name">{label}</span><small>{handle}</small><b aria-hidden="true">↗</b></a>)}</div>
       </section>
 
