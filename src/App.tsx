@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { FaFacebookF, FaGithub, FaLinkedinIn, FaTelegram, FaXTwitter } from 'react-icons/fa6'
+import { ProjectDemo } from './ProjectDemos'
+import { projectStories } from './projectData'
 import './App.css'
 
-const projectTabs = ['All work', 'Websites', 'AI agents'] as const
+const projectTabs = ['All work', 'Commerce', 'Websites', 'AI agents'] as const
 const socialLinks = [
   { label: 'X / Twitter', handle: '@Humbledanteh1', icon: FaXTwitter, href: 'https://x.com/Humbledanteh1' },
   { label: 'Telegram', handle: '@Humbledanteh1', icon: FaTelegram, href: 'https://t.me/Humbledanteh1' },
@@ -11,10 +13,16 @@ const socialLinks = [
   { label: 'GitHub', handle: 'humbledanteh1', icon: FaGithub, href: 'https://github.com/Humbledanteh1' },
 ]
 
+function getDemoSlug() {
+  const match = window.location.hash.match(/^#\/demo\/([^/]+)$/)
+  return match?.[1] ?? null
+}
+
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<(typeof projectTabs)[number]>('All work')
   const [scrolled, setScrolled] = useState(false)
+  const [demoSlug, setDemoSlug] = useState<string | null>(() => getDemoSlug())
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24)
@@ -22,7 +30,22 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleHashChange = () => setDemoSlug(getDemoSlug())
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  useEffect(() => {
+    if (demoSlug) window.scrollTo({ top: 0 })
+    else if (window.location.hash === '#work') {
+      window.requestAnimationFrame(() => document.getElementById('work')?.scrollIntoView())
+    }
+  }, [demoSlug])
+
   const closeMenu = () => setMenuOpen(false)
+  if (demoSlug) return <ProjectDemo slug={demoSlug} />
+  const visibleProjects = projectStories.filter((project) => activeTab === 'All work' || project.category === activeTab)
 
   return <div className="portfolio" id="top">
     <header className={scrolled ? 'topbar scrolled' : 'topbar'}>
@@ -76,22 +99,30 @@ export default function App() {
 
       <section className="work-section" id="work" aria-labelledby="work-heading">
         <div className="section-top">
-          <div><span className="eyebrow">01 / Project space</span><h2 id="work-heading">A place for<br /><em>what’s next.</em></h2></div>
-          <p>New work will live here. Each project can become a focused case study with a short story, the services involved, and the decisions behind the outcome.</p>
+          <div><span className="eyebrow">01 / Project space</span><h2 id="work-heading">Small concepts.<br /><em>Built to click.</em></h2></div>
+          <p>Four self-initiated demos, built from scratch: an online shop, a business website, and two AI-agent prototypes. Fictional brands, honest scope, and something useful to try in each one.</p>
         </div>
         <div className="project-controls" role="tablist" aria-label="Project categories">
           <span className="active-pill" aria-hidden="true" style={{ transform: `translateX(${projectTabs.indexOf(activeTab) * 100}%)` }} />
-          {projectTabs.map((tab) => <button type="button" role="tab" aria-selected={tab === activeTab} aria-controls="featured-project" className={tab === activeTab ? 'active' : ''} key={tab} onClick={() => setActiveTab(tab)}>{tab}</button>)}
+          {projectTabs.map((tab) => <button type="button" role="tab" aria-selected={tab === activeTab} aria-controls="case-study-grid" className={tab === activeTab ? 'active' : ''} key={tab} onClick={() => setActiveTab(tab)}>{tab}</button>)}
         </div>
-        <div className="placeholder-grid">
-          <article className="project-placeholder featured" id="featured-project" role="tabpanel" aria-live="polite">
-            <div className="placeholder-orb orb-one" aria-hidden="true" /><div className="placeholder-orb orb-two" aria-hidden="true" />
-            <span className="project-number">01</span>
-            <div><span className="project-label">{activeTab === 'AI agents' ? 'AI agent' : 'Future project'}</span><h3>{activeTab === 'Websites' ? 'Website case study' : activeTab === 'AI agents' ? 'Agent workflow' : 'Your next case study'}</h3><p>Add a project title, project type, and one concise sentence about the work when you are ready.</p></div>
-            <span className="placeholder-link">Details later ↗</span>
-          </article>
-          <article className="project-placeholder dark"><span className="project-number">02</span><div><span className="project-label">Future project</span><h3>Built to be filled</h3><p>A ready-made area for your next website, AI agent, experiment, or collaboration.</p></div><span className="placeholder-link">Project slot ↗</span></article>
-          <article className="project-placeholder pale"><span className="project-number">03</span><div><span className="project-label">Future project</span><h3>Work in progress</h3><p>Use this card for projects in progress or a small piece of work worth sharing.</p></div><span className="placeholder-link">Project slot ↗</span></article>
+        <div className="case-study-grid" id="case-study-grid" role="tabpanel" aria-live="polite">
+          {visibleProjects.map((project) => <article className={`case-card case-${project.visual}`} key={project.slug}>
+            <a className="case-card-visual" href={`#/demo/${project.slug}`} aria-label={`Open ${project.title} concept demo`}>
+              {project.visual === 'hearth' && <img src={`${import.meta.env.BASE_URL}demo-assets/hearth-vase.webp`} alt="Sculptural pale sage ceramic vase in warm studio light" loading="lazy" />}
+              {project.visual === 'sunday' && <img src={`${import.meta.env.BASE_URL}demo-assets/sunday-bakehouse.webp`} alt="Morning pastry and espresso at a warm neighborhood bakery" loading="lazy" />}
+              {project.visual === 'findwell' && <div className="agent-card-art" aria-hidden="true"><span className="agent-art-label">FINDWELL / PRODUCT FINDER</span><div className="agent-art-question">“A thoughtful gift<br />for a new home.”</div><div className="agent-art-answer"><i /> Try the handmade oat mug</div></div>}
+              {project.visual === 'orderwise' && <div className="agent-card-art order-art" aria-hidden="true"><span className="agent-art-label">ORDERWISE / SUPPORT DESK</span><div className="order-art-row"><b>Order #1048</b><small>In transit</small></div><div className="order-art-row"><b>Next step</b><small>Sample ETA</small></div><div className="order-art-progress"><i /></div></div>}
+              <span className="case-demo-chip">Self-initiated demo</span>
+            </a>
+            <div className="case-card-copy">
+              <div className="case-card-meta"><span>{project.number} / {project.category}</span><span>CONCEPT BUILD</span></div>
+              <h3>{project.title}</h3>
+              <p className="case-card-descriptor">{project.descriptor}</p>
+              <p className="case-card-summary">{project.summary}</p>
+              <a className="case-card-link" href={`#/demo/${project.slug}`}>Explore the project <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>)}
         </div>
       </section>
 
