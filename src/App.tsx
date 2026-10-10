@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaFacebookF, FaGithub, FaLinkedinIn, FaTelegram, FaXTwitter } from 'react-icons/fa6'
+import { FaGithub, FaLinkedinIn, FaTelegram, FaXTwitter } from 'react-icons/fa6'
 import { ProjectDemo } from './ProjectDemos'
 import { projectStories } from './projectData'
 import './App.css'
@@ -8,7 +8,6 @@ const projectTabs = ['All work', 'Commerce', 'Websites', 'AI agents'] as const
 const socialLinks = [
   { label: 'X / Twitter', handle: '@Humbledanteh1', icon: FaXTwitter, href: 'https://x.com/Humbledanteh1' },
   { label: 'Telegram', handle: '@Humbledanteh1', icon: FaTelegram, href: 'https://t.me/Humbledanteh1' },
-  { label: 'Facebook', handle: 'Add profile', icon: FaFacebookF, href: '#contact' },
   { label: 'LinkedIn', handle: 'sharif-mahmood-0792a842b', icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/sharif-mahmood-0792a842b' },
   { label: 'GitHub', handle: 'humbledanteh1', icon: FaGithub, href: 'https://github.com/Humbledanteh1' },
 ]
@@ -132,7 +131,7 @@ export default function App() {
       </section>
 
       <section className="social-section" aria-labelledby="social-heading">
-        <div className="social-intro"><span className="eyebrow">03 / Elsewhere</span><h2 id="social-heading">Find the work<br />in <em>motion.</em></h2><p>Find me on LinkedIn, Telegram, X, and GitHub. The Telegram, X, and GitHub profiles use <strong>Humbledanteh1</strong>; Facebook can be added when ready.</p></div>
+        <div className="social-intro"><span className="eyebrow">03 / Elsewhere</span><h2 id="social-heading">Find the work<br />in <em>motion.</em></h2><p>Find me on LinkedIn, Telegram, X, and GitHub. The Telegram, X, and GitHub profiles use <strong>Humbledanteh1</strong>.</p></div>
         <div className="social-list">{socialLinks.map(({ label, handle, icon: Icon, href }) => <a className="social-card" href={href} aria-label={`${label}: ${handle}`} key={label} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}><span className="social-icon" aria-hidden="true"><Icon /></span><span className="social-name">{label}</span><small>{handle}</small><b aria-hidden="true">↗</b></a>)}</div>
       </section>
 
