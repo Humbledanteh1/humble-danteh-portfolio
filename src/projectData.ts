@@ -1,4 +1,4 @@
-export type ProjectCategory = 'Commerce' | 'Websites' | 'AI agents'
+export type ProjectCategory = 'E-commerce' | 'Websites' | 'AI agents'
 
 export type ProjectStory = {
   slug: string
@@ -18,7 +18,7 @@ export const projectStories: ProjectStory[] = [
   {
     slug: 'hearth-form',
     number: '01',
-    category: 'Commerce',
+    category: 'E-commerce',
     title: 'Hearth & Form',
     descriptor: 'A considered storefront for small-batch homeware.',
     summary: 'A calm product catalogue that makes browsing feel as considered as the objects themselves.',

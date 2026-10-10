@@ -4,7 +4,7 @@ import { ProjectDemo } from './ProjectDemos'
 import { projectStories } from './projectData'
 import './App.css'
 
-const projectTabs = ['All work', 'Commerce', 'Websites', 'AI agents'] as const
+const projectTabs = ['All work', 'E-commerce', 'Websites', 'AI agents'] as const
 const socialLinks = [
   { label: 'X / Twitter', handle: '@Humbledanteh1', icon: FaXTwitter, href: 'https://x.com/Humbledanteh1' },
   { label: 'Telegram', handle: '@Humbledanteh1', icon: FaTelegram, href: 'https://t.me/Humbledanteh1' },
@@ -99,7 +99,7 @@ export default function App() {
       <section className="work-section" id="work" aria-labelledby="work-heading">
         <div className="section-top">
           <div><span className="eyebrow">01 / Project space</span><h2 id="work-heading">Small concepts.<br /><em>Built to click.</em></h2></div>
-          <p>Four self-initiated demos, built from scratch: an online shop, a business website, and two AI-agent prototypes. Fictional brands, honest scope, and something useful to try in each one.</p>
+          <p>Four self-initiated case studies, built from scratch: an e-commerce storefront, a small-business website, and two AI-agent prototypes. Fictional concepts, honest scope, and an interactive demo in each one.</p>
         </div>
         <div className="project-controls" role="tablist" aria-label="Project categories">
           <span className="active-pill" aria-hidden="true" style={{ transform: `translateX(${projectTabs.indexOf(activeTab) * 100}%)` }} />
@@ -115,7 +115,7 @@ export default function App() {
               <span className="case-demo-chip">Self-initiated demo</span>
             </a>
             <div className="case-card-copy">
-              <div className="case-card-meta"><span>{project.number} / {project.category}</span><span>CONCEPT BUILD</span></div>
+              <div className="case-card-meta"><span>{project.number} / {project.category}</span><span>CASE STUDY</span></div>
               <h3>{project.title}</h3>
               <p className="case-card-descriptor">{project.descriptor}</p>
               <p className="case-card-summary">{project.summary}</p>
