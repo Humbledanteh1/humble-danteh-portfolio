@@ -22,20 +22,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Install pnpm explicitly before setup-node configures pnpm caching.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-
-      - name: Enable Corepack
-        run: corepack enable
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm build
+        run: pnpm run build
         env:
           VITE_BASE: /humble-danteh-portfolio/
 
